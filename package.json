@@ -1,0 +1,35 @@
+{
+  "name": "node-app",
+  "version": "0.0.0",
+  "description": "node starter app boilerplate",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "NODE_ENV=test node test/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:tphummel/node-app.git"
+  },
+  "keywords": [
+    "boilerplate",
+    "starter",
+    "quickstart",
+    "template"
+  ],
+  "author": {
+    "name": "Tom Hummel",
+    "email": "tphummel@gmail.com",
+    "url": "tomhummel.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tphummel/node-app/issues"
+  },
+  "homepage": "https://github.com/tphummel/node-app",
+  "devDependencies": {
+    "tape": "~2.3.2"
+  }
+}
