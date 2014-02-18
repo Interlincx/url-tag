@@ -1,29 +1,41 @@
-# node.js base app
+# url-tag
 
-    git clone https://github.com/tphummel/node-app.git new-app-dir
-    cd !$
-    rm -rf .git
-    git init
-    git add . -am "inital commit"
-    git remote add ...
-    git push -u origin master
+[![Build Status](https://travis-ci.org/{{author}}/url-tag.png)](https://travis-ci.org/{{author}}/url-tag)  
+[![NPM](https://nodei.co/npm/url-tag.png?downloads=true)](https://nodei.co/npm/url-tag/)
 
+## install
 
-# {{app}}
+    npm install url-tag
 
-[![Build Status](https://travis-ci.org/{{author}}/{{app}}.png)](https://travis-ci.org/{{author}}/{{app}})  
-[![NPM](https://nodei.co/npm/{{app}}.png?downloads=true)](https://nodei.co/npm/{{app}}/)
-
-# install
-
-    npm install {{app}}
-
-# test
+## test
 
     npm test
 
-# usage
+## usage
+    var ut, spec, url, isMatch;
 
-    var app = require("{{app}}");
+    ut = require("url-tag");
+
+    spec = {
+      pathname: 
+        "/form-page": true
+      query:
+        "appId": "123"
+    }
+
+    url = "http://www.domain.com/form-page?appId=123";
     
-    app();
+    isMatch = ut(url, spec);
+
+    // prints "true"
+    console.log(isMatch);
+
+## notes
+  
+`spec.pathname` can have multiple pathname keys. the pathname of the parsed url must match any of the supplied keys to be satisfied.
+
+`spec.query` can have multiple key-value pairs. _ALL_ pairs must be present and equal to be satisfied.
+
+## todo
+
+- allow optional mode in which matching _ANY_ of the supplied query pairs will satisfy the matcher.
