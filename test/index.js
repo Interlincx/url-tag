@@ -10,24 +10,50 @@ var test = require("tape"),
       "http://localhost:3011/faq"
     ];
 
+test("module exports a function", function(t){
+  t.equal(typeof lib, "function");
+  t.end();
+});
+
 test("empty object criteria does not match", function(t){
   var criteria = {};
 
-  t.notOk(lib(criteria, urls[0]));
+  t.notOk(lib(criteria, urls[0]), "should miss");
+  t.end();
 });
 
 test("null criteria does not match", function(t){
   var criteria = null;
 
-  t.notOk(lib(criteria, urls[0]));
+  t.notOk(lib(criteria, urls[0]), "should miss");
+  t.end();
 });
 
-test("truthy non-object does not match", function(t){
-  var criteria = "something else",
-      result;
+test("should handle string url or parsed url object", function(t){
+  var criteria = {
+    pathname: {
+      "/": true
+    },
+    query: {
+      id: "2525"
+    }
+  };
 
-  result = lib(criteria, urls[0]);
-  t.notOk(result);
+  t.ok(lib(criteria, urls[2]), "should match");
+  t.notOk(lib(criteria, urls[0]), "should miss");
+
+  t.ok(lib(criteria, url.parse(urls[2], true)), "should match");
+  t.notOk(lib(criteria, url.parse(urls[0], true)), "should miss");
+  t.end();
+});
+
+test("truthy non-object spec throws error", function(t){
+  var criteria = "something else";
+
+  t.throws(function(){
+    lib(criteria, urls[0]); 
+  }, "throws when you pass a truthy non-object");
+  t.end();
 });
 
 test("match/miss single path", function(t){
@@ -37,8 +63,9 @@ test("match/miss single path", function(t){
     }
   };
 
-  t.ok(lib(criteria, urls[0]));
-  t.notOk(lib(criteria, urls[3]));
+  t.ok(lib(criteria, urls[0]), "should match");
+  t.notOk(lib(criteria, urls[3]), "should miss");
+  t.end();
 });
 
 test("match/miss double path", function(t){
@@ -49,8 +76,9 @@ test("match/miss double path", function(t){
     }
   };
 
-  t.ok(lib(criteria, urls[3]));
-  t.notOk(lib(criteria, urls[5]));
+  t.ok(lib(criteria, urls[3]), "should miss");
+  t.notOk(lib(criteria, urls[5]), "should match");
+  t.end();
 });
 
 test("match/miss single query", function(t){
@@ -60,8 +88,9 @@ test("match/miss single query", function(t){
     }
   };
 
-  t.ok(lib(criteria, urls[1]));
-  t.notOk(lib(criteria, urls[2]));
+  t.ok(lib(criteria, urls[1]), "should match");
+  t.notOk(lib(criteria, urls[2]), "should miss");
+  t.end();
 });
 
 test("match/miss double query", function(t){
@@ -72,8 +101,9 @@ test("match/miss double query", function(t){
     }
   };
 
-  t.ok(lib(criteria, urls[3]));
-  t.notOk(lib(criteria, urls[4]));
+  t.ok(lib(criteria, urls[3]), "should match");
+  t.notOk(lib(criteria, urls[4]), "should miss");
+  t.end();
 });
 
 test("match/miss single path + single query", function(t){
@@ -86,8 +116,9 @@ test("match/miss single path + single query", function(t){
     }
   };
 
-  t.ok(lib(criteria, urls[2]));
-  t.notOk(lib(criteria, urls[0]));
+  t.ok(lib(criteria, urls[2]), "should match");
+  t.notOk(lib(criteria, urls[0]), "should miss");
+  t.end();
 });
 
 test("match/miss single path + double query", function(t){
@@ -101,8 +132,9 @@ test("match/miss single path + double query", function(t){
     }
   };
 
-  t.ok(lib(criteria, urls[3]));
-  t.notOk(lib(criteria, urls[4]));
+  t.ok(lib(criteria, urls[3]), "should match");
+  t.notOk(lib(criteria, urls[4]), "should miss");
+  t.end();
 });
 
 test("match/miss double path + single query", function(t){
@@ -116,8 +148,9 @@ test("match/miss double path + single query", function(t){
     }
   };
 
-  t.ok(lib(criteria, urls[1]));
-  t.notOk(lib(criteria, urls[5]));
+  t.ok(lib(criteria, urls[1]), "should match");
+  t.notOk(lib(criteria, urls[5]), "should miss");
+  t.end();
 });
 
 test("match/miss double path + double query", function(t){
@@ -132,8 +165,9 @@ test("match/miss double path + double query", function(t){
     }
   };
 
-  t.ok(lib(criteria, urls[3]));
-  t.notOk(lib(criteria, urls[4]));
+  t.ok(lib(criteria, urls[3]), "should match");
+  t.notOk(lib(criteria, urls[4]), "should miss");
+  t.end();
 });
 
 test("should handle string pathname for legacy compatibility", function(t){
@@ -141,23 +175,9 @@ test("should handle string pathname for legacy compatibility", function(t){
     pathname: "/"  
   };
 
-  t.ok(lib(criteria, urls[0]));
-  t.notOk(lib(criteria, urls[3]));
+  t.ok(lib(criteria, urls[0]), "should match");
+  t.notOk(lib(criteria, urls[3]), "should miss");
+  t.end();
 });
 
-test("should handle string url or parsed url object", function(t){
-  var criteria = {
-    pathname: {
-      "/": true
-    },
-    query: {
-      id: "2525"
-    }
-  };
 
-  t.ok(lib(criteria, urls[2]));
-  t.notOk(lib(criteria, urls[0]));
-
-  t.ok(lib(criteria, url.parse(urls[2], true)));
-  t.notOk(lib(criteria, url.parse(urls[0], true)));
-});
