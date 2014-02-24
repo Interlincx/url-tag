@@ -1,5 +1,7 @@
 # url-tag
 
+compare a url string or object to a url pattern spec to find matches
+
 ## install
 
     npm install url-tag
@@ -39,5 +41,5 @@
 
 ## badges later
 
-    [![Build Status](https://travis-ci.org/{{author}}/url-tag.png)](https://travis-ci.org/{{author}}/url-tag)  
+    [![Build Status](https://travis-ci.org/Interlincx/url-tag.png)](https://travis-ci.org/Interlincx/url-tag)  
     [![NPM](https://nodei.co/npm/url-tag.png?downloads=true)](https://nodei.co/npm/url-tag/)
