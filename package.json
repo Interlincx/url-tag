@@ -1,7 +1,7 @@
 {
-  "name": "node-app",
+  "name": "url-tag",
   "version": "0.0.0",
-  "description": "node starter app boilerplate",
+  "description": "compare a url string or object to a url pattern spec to find matches",
   "main": "index.js",
   "directories": {
     "test": "test"
@@ -11,24 +11,20 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:tphummel/node-app.git"
+    "url": "git@github.com:Interlincx/url-tag.git"
   },
   "keywords": [
-    "boilerplate",
-    "starter",
-    "quickstart",
-    "template"
+    "url"
   ],
   "author": {
     "name": "Tom Hummel",
-    "email": "tphummel@gmail.com",
-    "url": "tomhummel.com"
+    "email": "tphummel@gmail.com"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tphummel/node-app/issues"
+    "url": "https://github.com/Interlincx/url-tag/issues"
   },
-  "homepage": "https://github.com/tphummel/node-app",
+  "homepage": "https://github.com/Interlincx/url-tag",
   "devDependencies": {
     "tape": "~2.3.2"
   }
