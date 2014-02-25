@@ -1,5 +1,16 @@
 (function(){
-  var URL = require("url");
+  var URL = require("url"),
+      getKeys = function(obj){
+        if(Object.keys) return Object.keys(obj);
+
+        var ownKeys = [];
+        if(obj !== Object(obj)) return ownKeys;
+
+        for(var key in obj){
+          if(obj.hasOwnProperty(key)) ownKeys.push(key)
+        }
+        return ownKeys;
+      };
 
   function upconvertSpec(spec){
     var pn = spec.pathname;
@@ -18,7 +29,7 @@
       throw new Error("specPathname must be an object");
     }
 
-    var keys = Object.keys(specPathname);
+    var keys = getKeys(specPathname);
     if(keys.length === 0) return true;
 
     for(var key in specPathname){
