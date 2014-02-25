@@ -1,6 +1,6 @@
 {
   "name": "url-tag",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "compare a url string or object to a url pattern spec to find matches",
   "main": "index.js",
   "scripts": {
