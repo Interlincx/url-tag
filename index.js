@@ -24,8 +24,8 @@
   }
 
   function testPathname(specPathname, urlPathname){
-    if(!specPathname) return false;
-    if(typeof specPathname !== "object") {
+    if(specPathname == null) return false;
+    if(specPathname !== Object(specPathname)) {
       throw new Error("specPathname must be an object");
     }
 
@@ -42,7 +42,7 @@
   function testQuery(specQuery, urlQuery){
     var isMatch = true;
 
-    if(!specQuery) return true;
+    if(specQuery == null) return true;
 
     for(var key in specQuery){
       if(urlQuery[key] !== specQuery[key]) {
@@ -55,20 +55,20 @@
 
   function testUrl(spec, url){
 
-    if (!spec) spec = {pathname: null, query: null};
+    if (spec == null) spec = {pathname: null, query: null};
     if (!spec.pathname) spec.pathname = null;
     if (!spec.query) spec.query = null;
 
-    if (typeof spec !== "object") {
+    if (spec !== Object(spec)) {
       throw new Error("'spec' argument must be an object");
     }
-    if (!url) {
+    if (url == null) {
       throw new Error("'url' argument must be a string or object");
     }
 
     spec = upconvertSpec(spec);
 
-    if (!spec.query && !spec.pathname) return false;
+    if (spec.query == null && spec.pathname == null) return false;
 
     if(typeof url === "string"){
       url = URL.parse(url, true);
