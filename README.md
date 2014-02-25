@@ -2,7 +2,7 @@
 
 compare a url string or object to a url pattern spec to find matches
 
-[![Build Status](https://travis-ci.org/Interlincx/url-tag.png)](https://travis-ci.org/Interlincx/url-tag)  
+[![Build Status](https://travis-ci.org/Interlincx/url-tag.png?branch=master)](https://travis-ci.org/Interlincx/url-tag)  
 [![NPM](https://nodei.co/npm/url-tag.png?downloads=true)](https://nodei.co/npm/url-tag/)
 
 ## install
@@ -19,10 +19,12 @@ compare a url string or object to a url pattern spec to find matches
     ut = require("url-tag");
 
     spec = {
-      pathname: 
+      pathname: {
         "/form-page": true
-      query:
+      },
+      query: {
         "appId": "123"
+      }
     }
 
     url = "http://www.domain.com/form-page?appId=123";
