@@ -10,8 +10,9 @@ var test = require("tape"),
       "http://localhost:3011/faq"
     ];
 
-test("module exports a function", function(t){
-  t.equal(typeof lib, "function");
+test("module exports", function(t){
+  t.equal(typeof lib, "function", "exposes module fn");
+  t.equal(typeof lib.testPathname, "function", "exposes testPathname fn");
   t.end();
 });
 
@@ -177,6 +178,19 @@ test("should handle string pathname for legacy compatibility", function(t){
 
   t.ok(lib(criteria, urls[0]), "should match");
   t.notOk(lib(criteria, urls[3]), "should miss");
+  t.end();
+});
+
+test("should expose testPathname fn", function(t){
+  var criteria = {
+    pathname: {
+      "/form": true,
+      "/faq": true
+    }
+  };
+
+  t.notOk(lib.testPathname(criteria.pathname, "/"), "should miss");
+  t.ok(lib.testPathname(criteria.pathname, "/faq"), "should match");
   t.end();
 });
 

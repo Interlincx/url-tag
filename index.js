@@ -75,5 +75,6 @@
   }
 
   module.exports = testUrl;
+  module.exports.testPathname = testPathname; 
 
 })();
