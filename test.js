@@ -181,7 +181,9 @@ test("should handle string pathname for legacy compatibility", function(t){
 });
 
 
-//ss models test
+// is this going to be an issue?
+// - ss-models is expected null/null to match
+// - neb-web is expecting null/null to miss
 
 // t.test "model.isPageMatch", (st) ->
 
@@ -195,92 +197,3 @@ test("should handle string pathname for legacy compatibility", function(t){
 
 //     isMatch = PageTags.isPageMatch urlObj, emptySpec
 //     sst.equal isMatch, true
-
-
-//   st.test "should match with path only", (sst) ->
-//     sst.plan 1
-//     urlObj = URL.parse "http://domain.com/form", true
-
-//     pageSpec =
-//       pathname: 
-//         "/form": true
-//       query: {}
-
-//     isMatch = PageTags.isPageMatch urlObj, pageSpec
-//     sst.equal isMatch, true
-
-//   st.test "should miss with path only", (sst) ->
-//     sst.plan 1
-//     urlObj = URL.parse "http://domain.com/form", true
-
-//     pageSpec =
-//       pathname: 
-//         "/page3": true
-//       query: null
-
-//     isMatch = PageTags.isPageMatch urlObj, pageSpec
-//     sst.equal isMatch, false
-
-//   st.test "should match with query only", (sst) ->
-//     sst.plan 1
-//     urlObj = URL.parse "http://domain.com/?page=form", true
-
-//     pageSpec =
-//       pathname: null
-//       query:
-//         page: "form"
-
-//     isMatch = PageTags.isPageMatch urlObj, pageSpec
-//     sst.equal isMatch, true
-
-//   st.test "should miss with query only", (sst) ->
-//     sst.plan 1
-//     urlObj = URL.parse "http://domain.com/?page=confirm", true
-
-//     pageSpec =
-//       pathname: null
-//       query:
-//         page: "form"
-
-//     isMatch = PageTags.isPageMatch urlObj, pageSpec
-//     sst.equal isMatch, false
-
-//   st.test "should match with path and query", (sst) ->
-//     sst.plan 1
-//     urlObj = URL.parse "http://domain.com/page3?arg=fosho", true
-
-//     pageSpec =
-//       pathname: "/page3"
-//       query:
-//         arg: "fosho"
-
-//     isMatch = PageTags.isPageMatch urlObj, pageSpec
-//     sst.equal isMatch, true
-
-//   st.test "should miss with path and query", (sst) ->
-//     sst.plan 1
-//     urlObj = URL.parse "http://domain.com/page3?arg=fosho", true
-
-//     pageSpec =
-//       pathname: "/page4"
-//       query:
-//         arg: "fosho"
-
-//     isMatch = PageTags.isPageMatch urlObj, pageSpec
-//     sst.equal isMatch, false
-
-//   st.test "should match dev example", (sst) ->
-//     sst.plan 1
-//     urlObj = URL.parse "http://northpayday.com/?id=com_641bdef6-126d-4b68-91ce-af357db26cbd", true
-
-//     pageSpec = JSON.parse "{\"all\":{\"pathname\":{\"/\":true,\"/form\":true},\"query\":null}}"
-
-//     isMatch = PageTags.isPageMatch urlObj, pageSpec
-//     sst.equal isMatch, true
-
-//   st.end()
-
-
-
-
-
