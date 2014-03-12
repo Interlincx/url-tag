@@ -32,6 +32,8 @@
     var keys = getKeys(specPathname);
     if(keys.length === 0) return true;
 
+    if(keys[0] === "*") return true;
+
     for(var key in specPathname){
       if(urlPathname === key) return true; 
     }

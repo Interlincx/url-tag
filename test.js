@@ -181,6 +181,34 @@ test("should handle string pathname for legacy compatibility", function(t){
   t.end();
 });
 
+  
+test("should match everything with legacy wildcard pathname", function(t){
+  var criteria = {
+    pathname: "*"
+  };
+
+  urls.forEach(function(url){
+    t.ok(lib(criteria, url), "should match url");
+  });
+
+  t.end();
+});
+
+test("should match everything with wildcard pathname", function(t){
+  var criteria = {
+    pathname: {
+      "*": true
+    }
+  };
+
+  urls.forEach(function(url){
+    t.ok(lib(criteria, url), "should match url");
+  });
+
+  t.end();
+});
+
+
 test("should expose testPathname fn", function(t){
   var criteria = {
     pathname: {
@@ -194,6 +222,18 @@ test("should expose testPathname fn", function(t){
   t.end();
 });
 
+test("should expose testPathname fn", function(t){
+  var criteria = {
+    pathname: {
+      "/form": true,
+      "/faq": true
+    }
+  };
+
+  t.notOk(lib.testPathname(criteria.pathname, "/"), "should miss");
+  t.ok(lib.testPathname(criteria.pathname, "/faq"), "should match");
+  t.end();
+});
 
 // is this going to be an issue?
 // - ss-models is expected null/null to match
